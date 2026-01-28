@@ -21,7 +21,7 @@
 
 .translation-tooltip {
   position: fixed;
-  background: #EFF1F5;
+  background: rgba(239, 241, 245, 0.85);
   color: #4c4f69;
   padding: 8px 10px;
   border-radius: 4px;
