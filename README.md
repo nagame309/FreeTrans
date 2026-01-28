@@ -6,7 +6,7 @@
 
 選取文字即可即時翻譯,配備精美的毛玻璃浮動視窗
 
-[![Version](https://img.shields.io/badge/version-1.0-f38ba8.svg)](https://github.com/yourusername/free-translate)
+[![Version](https://img.shields.io/badge/version-1.0-f38ba8.svg)](https://github.com/nagame309/free-translate)
 [![License](https://img.shields.io/badge/license-MIT-94e2d5.svg)](LICENSE)
 
 </div>
@@ -48,7 +48,7 @@ _即將上架 Chrome Web Store_
 
 1. 下載或 Clone 此專案
    ```bash
-   git clone https://github.com/yourusername/free-translate.git
+   git clone https://github.com/nagame309/free-translate.git
    cd free-translate
    ```
 
@@ -188,7 +188,7 @@ translation-extension/
 ### 開發設定
 ```bash
 # Clone 專案
-git clone https://github.com/yourusername/free-translate.git
+git clone https://github.com/nagame309/free-translate.git
 cd free-translate
 
 # 載入到 Chrome
@@ -225,8 +225,8 @@ cd free-translate
 
 如有任何問題或建議,歡迎透過以下方式聯絡:
 
-- 🐛 Issues: [GitHub Issues](https://github.com/yourusername/free-translate/issues)
-- 💡 功能建議: [GitHub Discussions](https://github.com/yourusername/free-translate/discussions)
+- 🐛 Issues: [GitHub Issues](https://github.com/nagame309/free-translate/issues)
+- 💡 功能建議: [GitHub Discussions](https://github.com/nagame309/free-translate/discussions)
 
 ---
 
