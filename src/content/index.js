@@ -77,6 +77,9 @@ class TranslationManager {
   handleMouseUp(e) {
     if (this.translationTimeout) clearTimeout(this.translationTimeout);
 
+    // Only translate if Alt key is pressed
+    if (!e.altKey) return;
+
     this.translationTimeout = setTimeout(async () => {
       const selection = window.getSelection();
       const text = selection.toString().trim();

@@ -2,7 +2,6 @@
 export async function translateWithGoogle(text, sourceLang, targetLang) {
   try {
     const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=${sourceLang}&tl=${targetLang}&dt=t&q=${encodeURIComponent(text)}`;
-    console.log('Google Service: Fetching...', url);
     
     const response = await fetch(url);
     

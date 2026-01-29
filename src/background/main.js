@@ -18,8 +18,6 @@ async function handleTranslation(request) {
   // Default to Google if no service specified
   const serviceType = service || 'google';
 
-  console.log(`[Background] Processing translation request via ${serviceType}`);
-
   switch (serviceType) {
     case 'google':
       return await translateWithGoogle(text, sourceLang, targetLang);

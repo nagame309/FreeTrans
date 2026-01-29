@@ -3,12 +3,12 @@ import shutil
 import zipfile
 from pathlib import Path
 
-VERSION = "1.0.0"
-PACKAGE_NAME = f"free-translate-v{VERSION}"
+VERSION = "2.0.0"
+PACKAGE_NAME = f"free-trans-v{VERSION}"
 BUILD_DIR = "build"
 DIST_DIR = "dist"
 
-print("Free Translate Packaging Tool")
+print("FreeTrans Packaging Tool")
 print(f"Version: {VERSION}")
 print("=" * 40)
 print()
@@ -28,26 +28,28 @@ os.makedirs(DIST_DIR)
 print("Copying files...")
 files_to_copy = [
     "manifest.json",
-    "content.js",
     "content.css",
     "popup.html",
     "popup.js",
     "popup.css",
     "INSTALL.md",
-    "LICENSE"
+    "LICENSE",
+    "CHANGELOG.md"
 ]
 
 for file in files_to_copy:
-    shutil.copy(file, f"{BUILD_DIR}/{PACKAGE_NAME}/")
-    print(f"   + {file}")
+    if os.path.exists(file):
+        shutil.copy(file, f"{BUILD_DIR}/{PACKAGE_NAME}/")
+        print(f"   + {file}")
 
 # Copy folders
 print("Copying folders...")
-folders_to_copy = ["icons", "fonts"]
+folders_to_copy = ["icons", "fonts", "src", "options"]
 
 for folder in folders_to_copy:
-    shutil.copytree(folder, f"{BUILD_DIR}/{PACKAGE_NAME}/{folder}")
-    print(f"   + {folder}/")
+    if os.path.exists(folder):
+        shutil.copytree(folder, f"{BUILD_DIR}/{PACKAGE_NAME}/{folder}")
+        print(f"   + {folder}/")
 
 # Create ZIP file
 print("Compressing files...")

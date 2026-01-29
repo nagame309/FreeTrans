@@ -81,8 +81,6 @@ export async function translateWithOpenAI(text, sourceLang, targetLang, manualCo
     .replace(/{{text}}/g, processedInput);
 
   try {
-    console.log(`[OpenAI] Requesting... ${url} (${model})`);
-
     const headers = {
       'Content-Type': 'application/json'
     };
