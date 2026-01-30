@@ -1,15 +1,15 @@
 <div align="center">
+  <img src="icons/icon128.png" width="128" height="128" alt="FreeTrans Icon">
 
-# 🌸 浮譯 FreeTrans
+# 浮譯 FreeTrans
 
 **一個優雅、輕量的 Chrome 翻譯擴充功能**
 
 選取即翻譯 • 毛玻璃設計 • 極簡體驗
 
-[![Version](https://img.shields.io/badge/version-2.0.0-FD5586?style=flat-square)](https://github.com/nagame309/free-translate)
+[![Version](https://img.shields.io/badge/version-2.0.0-FD5586?style=flat-square)](https://github.com/nagame309/FreeTrans/releases/latest)
 [![License](https://img.shields.io/badge/license-MIT-94e2d5?style=flat-square)](LICENSE)
-[![Chrome](https://img.shields.io/badge/Chrome-Extension-4285F4?style=flat-square&logo=googlechrome&logoColor=white)](https://github.com/nagame309/free-translate)
-[![Stars](https://img.shields.io/github/stars/nagame309/free-translate?style=flat-square&color=FD5586)](https://github.com/nagame309/free-translate/stargazers)
+[![Chrome](https://img.shields.io/badge/Chrome-Extension-4285F4?style=flat-square&logo=googlechrome&logoColor=white)](https://github.com/nagame309/FreeTrans)
 
 [功能特色](#-功能特色) • [安裝方式](#-安裝) • [使用方法](#-使用) • [開發](#-開發貢獻)
 
@@ -17,25 +17,13 @@
 
 ### 📸 預覽
 
-> *截圖區域 - 請放置實際使用畫面*
-
-**浮動翻譯視窗**
-```
-待加入: 翻譯視窗截圖
-展示選取文字後的翻譯效果
-```
-
-**設定面板**
-```
-待加入: 設定頁面截圖  
-展示簡潔優雅的設定介面
-```
+https://github.com/nagame309/FreeTrans/raw/master/assets/demo.mp4
 
 </div>
 
 ---
 
-## ✨ 功能特色
+## 🛠 功能特色
 
 <table>
 <tr>
@@ -43,30 +31,31 @@
 
 ### 核心功能
 
-- **⚡️ 即時翻譯** - 按住 `Alt` 並選取文字立即顯示翻譯
-- **🧠 智能過濾** - 自動跳過純中文內容
-- **📋 一鍵複製** - 點擊翻譯內容即可複製
-- **🌏 多國語言** - 支援英日韓法德西等語言
-- **🎚️ 自由開關** - 可隨時啟用/停用翻譯
+- **即時翻譯** - 按住 `Alt` 並選取文字立即顯示翻譯
+- **智能過濾** - 自動跳過純中文內容
+- **一鍵複製** - 點擊翻譯內容即可複製
+- **多國語言** - 支援 18+ 種全球主要語言
+- **自由開關** - 可隨時啟用/停用翻譯
 
 </td>
 <td width="50%">
 
-### 🎨 設計理念
+### 設計理念
 
-- **✨ 毛玻璃效果** - 現代 Glassmorphism 風格
-- **🎭 雙色主題** - Catppuccin 雙色配色
-- **🌊 流暢動畫** - 淡入淡出與縮放效果  
-- **🎯 智能定位** - 自動避開螢幕邊緣
-- **🖱️ 極簡互動** - 按住 Alt 選取,不干擾正常閱讀
+- **毛玻璃效果** - 現代 Glassmorphism 風格
+- **雙色主題** - Catppuccin 雙色配色 (Latte/Frappe)
+- **流暢動畫** - 淡入淡出與縮放效果  
+- **智能定位** - 自動避開螢幕邊緣
+- **極簡互動** - 按住 Alt 選取,不干擾正常閱讀
 
 </td>
 </tr>
 </table>
 
-### 💡 為什麼選擇浮譯？
+### 為什麼選擇浮譯？
 
 - **減少干擾** - 必須按住 `Alt` 才會觸發，避免平常劃詞時頻繁跳出視窗。
+- **支援多引擎** - 同時支援 Google, Bing, OpenAI 及 DeepL。
 - **輕量高效** - 無框架依賴,純原生 JavaScript
 
 
@@ -74,26 +63,31 @@
 
 ## 🚀 安裝
 
-### 方法一：從 Chrome Web Store 安裝 (即將推出)
+### 方法一：下載正式版 (推薦)
 
-_正在準備上架,敬請期待..._
+1. 前往 [Releases 頁面](https://github.com/nagame309/FreeTrans/releases/latest) 下載最新版的 `free-trans-v2.0.0.zip`。
+2. 將下載的檔案解壓縮。
+3. 開啟 Chrome 瀏覽器，前往 `chrome://extensions/`。
+4. 在右上角開啟「開發人員模式」。
+5. 點擊「載入未封裝項目」，選擇剛才解壓縮的資料夾。
+6. 完成！擴充功能已成功安裝。
 
-### 方法二：手動安裝開發版
+### 方法二：手動編譯開發版
 
 ```bash
 # 1. Clone 專案
-git clone https://github.com/nagame309/free-translate.git
+git clone https://github.com/nagame309/FreeTrans.git
 
 # 2. 進入專案目錄
-cd free-translate
+cd FreeTrans
 ```
 
 **3. 載入到 Chrome**
 1. 開啟 Chrome 並前往 `chrome://extensions/`
 2. 右上角開啟「開發人員模式」
 3. 點擊「載入未封裝項目」
-4. 選擇 `translation-extension` 資料夾
-5. 完成!擴充功能圖示會出現在工具列 🎉
+4. 選擇本資料夾
+5. 完成！🎉
 
 ---
 
@@ -105,7 +99,7 @@ cd free-translate
 <tr>
 <td width="33%" align="center">
 
-**1️⃣ 選取文字**
+**1. 選取文字**
 
 按住 `Alt` 鍵，在任何網頁選取文字  
 (至少 3 個字元)
@@ -113,7 +107,7 @@ cd free-translate
 </td>
 <td width="33%" align="center">
 
-**2️⃣ 自動翻譯**
+**2. 自動翻譯**
 
 浮動視窗自動顯示  
 點擊內容即可複製
@@ -121,7 +115,7 @@ cd free-translate
 </td>
 <td width="33%" align="center">
 
-**3️⃣ 自然關閉**
+**3. 自然關閉**
 
 點擊空白或滾動頁面  
 視窗優雅地消失
@@ -135,7 +129,7 @@ cd free-translate
 點擊工具列圖示 <img src="icons/icon16.png" width="16" align="center"> 可以調整:
 
 - **來源語言** - 自動偵測或指定語言
-- **目標語言** - 繁中/簡中/英文/日文
+- **目標語言** - 支援全球 18+ 種主要語言
 - **自動翻譯** - 開關翻譯功能
 
 ### 支援語言
@@ -143,20 +137,26 @@ cd free-translate
 <details>
 <summary>📜 點擊展開完整語言列表</summary>
 
-#### 來源語言
+#### 支援語言列表
 - 🌍 自動偵測 (推薦)
 - 🇺🇸 English (英文)
+- 🇹🇼 繁體中文
+- 🇨🇳 簡體中文
 - 🇯🇵 日本語 (日文)
 - 🇰🇷 한국어 (韓文)
 - 🇫🇷 Français (法文)
 - 🇩🇪 Deutsch (德文)
 - 🇪🇸 Español (西班牙文)
-
-#### 目標語言
-- 🇹🇼 繁體中文
-- 🇨🇳 简体中文
-- 🇺🇸 English
-- 🇯🇵 日本語
+- 🇮🇹 Italiano (義大利文)
+- 🇷🇺 Русский (俄文)
+- 🇵🇹 Português (葡萄牙文)
+- 🇳🇱 Nederlands (荷蘭文)
+- 🇵🇱 Polski (波蘭文)
+- 🇻🇳 Tiếng Việt (越南文)
+- 🇹🇭 ไทย (泰文)
+- 🇮🇩 Bahasa Indonesia (印尼文)
+- 🇹🇷 Türkçe (土耳其文)
+- 🇸🇦 العربية (阿拉伯文)
 
 </details>
 
@@ -172,7 +172,7 @@ cd free-translate
   "manifest": "V3",           // Chrome Extension Manifest V3
   "framework": "Vanilla JS",  // 無框架依賴
   "styling": "Pure CSS3",     // 純 CSS 動畫
-  "api": "Google Translate",  // 免費翻譯 API
+  "services": ["Google", "Bing", "OpenAI", "DeepL"], // 支援服務
   "theme": "Catppuccin",      // 美觀配色系統
   "font": "MapleMono NF CN"   // 等寬中文字體
 }
@@ -190,29 +190,25 @@ cd free-translate
 使用 [Catppuccin](https://github.com/catppuccin/catppuccin) 配色主題:
 
 - **浮動視窗**: Latte (淺色) + 毛玻璃效果
-- **設定面板**: Latte (淺色) 主題
-- **主題色**: `#FD5586` 粉紅色
+- **設定面板**: Latte (淺色) & Frappe (深色)
+- **主題色**: `#ea76cb` (Pink)
 
 ---
 
 ## 📁 專案結構
 
 ```
-free-translate/
+FreeTrans/
 ├── 📄 manifest.json          # 擴充功能配置
 ├── 🎨 content.css            # 浮動視窗樣式
-├── ⚙️  content.js             # 核心翻譯邏輯
-├── 🎛️  popup.html             # 設定面板
-├── 🎛️  popup.js               # 設定面板邏輯
-├── 🎨 popup.css              # 設定面板樣式
+├── 📁 src/                   # 核心邏輯
+│   ├── 📁 background/        # 背景腳本與翻譯服務
+│   └── 📁 content/           # 內容腳本與工具
+├── 🎛️  popup.html             # 簡易設定面板
+├── 📁 options/               # 詳細設定頁面
 ├── 📁 icons/                 # 擴充功能圖示
-│   ├── icon16.png
-│   ├── icon48.png
-│   ├── icon128.png
-│   └── translate.png
 ├── 📁 fonts/                 # MapleMono 字體
-│   ├── MapleMono-NF-CN-Regular.ttf
-│   └── MapleMono-NF-CN-Bold.ttf
+├── 📁 assets/                # 展示素材 (Demo 影片等)
 ├── 📖 README.md              # 專案說明
 ├── 📋 LICENSE                # MIT 授權
 └── 🎨 UI_DESIGN.md           # UI 設計文件
@@ -322,17 +318,11 @@ git push origin feature/your-feature-name
 
 ---
 
-## 📄 授權
+## 📄 授權與隱私
 
-本專案採用 [MIT License](LICENSE) 授權
+本專案採用 [MIT License](LICENSE) 授權。
 
-這意味著你可以:
-- ✅ 商業使用
-- ✅ 修改
-- ✅ 發布
-- ✅ 私人使用
-
-只需保留版權聲明即可!
+我們重視您的隱私，請參閱我們的 [隱私權政策 (Privacy Policy)](PRIVACY_POLICY.md)。
 
 ---
 

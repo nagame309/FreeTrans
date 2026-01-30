@@ -3,7 +3,7 @@
 // i18n Dictionary
 const translations = {
   'zh-TW': {
-    title: '浮譯設定',
+    title: '浮譯',
     general: '一般設定',
     uiLang: '介面語言',
     langHint: '設定將自動儲存並套用至全域介面。',
@@ -23,10 +23,15 @@ const translations = {
     saveAI: '儲存 AI 翻譯設定',
     saved: '設定已儲存 ✓',
     testSuccess: '連線成功！(Hello → 你好)',
-    testFail: '連線失敗: '
+    testFail: '連線失敗: ',
+    aboutTitle: '關於與支持',
+    aboutDesc: '浮譯 (FreeTrans) 是一款追求極致簡約與美感的劃詞翻譯工具。',
+    aboutCredits: 'Made with ❤️ by nagame309 & Gemini CLI',
+    supportText: '如果這個專案對你有幫助，歡迎請我喝杯咖啡！',
+    donateBtn: '贊助支持'
   },
   'en': {
-    title: 'FreeTrans Settings',
+    title: 'FreeTrans',
     general: 'General Settings',
     uiLang: 'Interface Language',
     langHint: 'Settings are automatically saved and applied globally.',
@@ -46,7 +51,12 @@ const translations = {
     saveAI: 'Save AI Settings',
     saved: 'Settings Saved ✓',
     testSuccess: 'Success! (Hello → 你好)',
-    testFail: 'Failed: '
+    testFail: 'Failed: ',
+    aboutTitle: 'About & Support',
+    aboutDesc: 'FreeTrans is a select-to-translate tool focused on simplicity and aesthetics.',
+    aboutCredits: 'Made with ❤️ by nagame309 & Gemini CLI',
+    supportText: 'If this project helps you, consider buying me a coffee!',
+    donateBtn: 'Donate'
   }
 };
 
@@ -75,10 +85,17 @@ document.addEventListener('DOMContentLoaded', () => {
   const userPromptInput = document.getElementById('openai-user-prompt');
   const promptInput = document.getElementById('openai-prompt');
   
+  const deeplApiKeyInput = document.getElementById('deepl-api-key');
+  const deeplPlanSelect = document.getElementById('deepl-plan');
+  
   const saveAiBtn = document.getElementById('save-ai-btn');
   const testAiBtn = document.getElementById('test-ai-btn');
   const testStatus = document.getElementById('test-status');
+  const saveDeeplBtn = document.getElementById('save-deepl-btn');
   
+  const toggleApiKeyBtn = document.getElementById('toggle-api-key');
+  const toggleDeeplKeyBtn = document.getElementById('toggle-deepl-key');
+
   const toast = document.getElementById('toast');
   const themeToggleBtn = document.getElementById('theme-toggle');
   const sunIcon = themeToggleBtn.querySelector('.sun-icon');
@@ -109,6 +126,28 @@ document.addEventListener('DOMContentLoaded', () => {
     chrome.storage.sync.set({ theme: newTheme });
   });
 
+  // API Key Visibility Toggle
+  function setupPasswordToggle(button, input) {
+    const eyeIcon = button.querySelector('.eye-icon');
+    const eyeOffIcon = button.querySelector('.eye-off-icon');
+    
+    button.addEventListener('click', () => {
+      const isPassword = input.type === 'password';
+      input.type = isPassword ? 'text' : 'password';
+      
+      if (isPassword) {
+        eyeIcon.classList.add('hidden');
+        eyeOffIcon.classList.remove('hidden');
+      } else {
+        eyeIcon.classList.remove('hidden');
+        eyeOffIcon.classList.add('hidden');
+      }
+    });
+  }
+
+  setupPasswordToggle(toggleApiKeyBtn, apiKeyInput);
+  setupPasswordToggle(toggleDeeplKeyBtn, deeplApiKeyInput);
+
   function applyTheme(theme) {
     document.documentElement.setAttribute('data-theme', theme);
     if (theme === 'dark') {
@@ -137,7 +176,9 @@ document.addEventListener('DOMContentLoaded', () => {
       openaiModel: 'gpt-3.5-turbo',
       openaiTemperature: 0,
       openaiUserPrompt: '',
-      openaiPrompt: ''
+      openaiPrompt: '',
+      deeplApiKey: '',
+      deeplPlan: 'free'
     }, (items) => {
       apiKeyInput.value = items.openaiApiKey;
       baseUrlInput.value = items.openaiBaseUrl;
@@ -145,18 +186,29 @@ document.addEventListener('DOMContentLoaded', () => {
       tempInput.value = items.openaiTemperature;
       userPromptInput.value = items.openaiUserPrompt;
       promptInput.value = items.openaiPrompt;
+      
+      deeplApiKeyInput.value = items.deeplApiKey;
+      deeplPlanSelect.value = items.deeplPlan;
     });
 
     chrome.storage.sync.get({
-      theme: 'light',
+      theme: null,
       uiLanguage: 'zh-TW'
     }, (items) => {
-      applyTheme(items.theme || 'light');
+      const activeTheme = items.theme || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      applyTheme(activeTheme);
       const currentLang = items.uiLanguage || 'zh-TW';
       uiLanguageSelect.value = currentLang;
       updateLanguage(currentLang);
     });
   }
+
+  // Listen for storage changes to sync theme in real-time
+  chrome.storage.onChanged.addListener((changes, namespace) => {
+    if (namespace === 'sync' && changes.theme) {
+      applyTheme(changes.theme.newValue);
+    }
+  });
 
   // Helper to get current AI settings object from inputs
   function getCurrentAISettings() {
@@ -173,6 +225,15 @@ document.addEventListener('DOMContentLoaded', () => {
   saveAiBtn.addEventListener('click', () => {
     const localSettings = getCurrentAISettings();
     chrome.storage.local.set(localSettings, () => {
+      showToast();
+    });
+  });
+
+  saveDeeplBtn.addEventListener('click', () => {
+    chrome.storage.local.set({
+      deeplApiKey: deeplApiKeyInput.value.trim(),
+      deeplPlan: deeplPlanSelect.value
+    }, () => {
       showToast();
     });
   });

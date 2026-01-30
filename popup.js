@@ -36,28 +36,90 @@ document.addEventListener('DOMContentLoaded', () => {
   const sunIcon = themeToggleBtn.querySelector('.sun-icon');
   const moonIcon = themeToggleBtn.querySelector('.moon-icon');
 
+  const LANGUAGES = {
+    'zh-TW': '繁體中文',
+    'zh-CN': '簡體中文',
+    'en': 'English',
+    'ja': '日本語',
+    'ko': '한국어',
+    'fr': 'Français',
+    'de': 'Deutsch',
+    'es': 'Español',
+    'it': 'Italiano',
+    'ru': 'Русский',
+    'pt': 'Português',
+    'nl': 'Nederlands',
+    'pl': 'Polski',
+    'vi': 'Tiếng Việt',
+    'th': 'ไทย',
+    'id': 'Bahasa Indonesia',
+    'tr': 'Türkçe',
+    'ar': 'العربية'
+  };
+
+  function populateLanguages(lang) {
+    const t = translations[lang] || translations['zh-TW'];
+    
+    // Clear existing
+    sourceLangSelect.innerHTML = `<option value="auto">${t.autoDetect}</option>`;
+    targetLangSelect.innerHTML = '';
+
+    Object.entries(LANGUAGES).forEach(([code, name]) => {
+      const sourceOpt = document.createElement('option');
+      sourceOpt.value = code;
+      sourceOpt.textContent = name;
+      sourceLangSelect.appendChild(sourceOpt);
+
+      const targetOpt = document.createElement('option');
+      targetOpt.value = code;
+      targetOpt.textContent = name;
+      targetLangSelect.appendChild(targetOpt);
+    });
+  }
+
   // Load settings
   chrome.storage.sync.get({
     sourceLang: 'auto',
     targetLang: 'zh-TW',
     autoTranslate: true,
     service: 'google',
-    theme: 'light',
+    theme: null,
     uiLanguage: 'zh-TW'
   }, (items) => {
+    // Populate dropdowns first
+    populateLanguages(items.uiLanguage);
+
+    // Set values
     sourceLangSelect.value = items.sourceLang;
     targetLangSelect.value = items.targetLang;
     autoTranslateCheck.checked = items.autoTranslate;
     serviceSelect.value = items.service;
     
-    // Apply Theme
-    applyTheme(items.theme);
+    // Apply Theme (If no theme saved, detect system)
+    const activeTheme = items.theme || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    applyTheme(activeTheme);
 
     // Apply Language
     updateLanguage(items.uiLanguage);
 
     // Initial Button State
     toggleSaveButton(items.autoTranslate);
+  });
+
+  // Listen for storage changes to sync theme in real-time
+  chrome.storage.onChanged.addListener((changes, namespace) => {
+    if (namespace === 'sync') {
+      if (changes.theme) applyTheme(changes.theme.newValue);
+      if (changes.uiLanguage) {
+        populateLanguages(changes.uiLanguage.newValue);
+        updateLanguage(changes.uiLanguage.newValue);
+        // Re-apply values after re-populating
+        chrome.storage.sync.get(['sourceLang', 'targetLang'], (items) => {
+            sourceLangSelect.value = items.sourceLang;
+            targetLangSelect.value = items.targetLang;
+        });
+      }
+    }
   });
 
   function applyTheme(theme) {

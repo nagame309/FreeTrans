@@ -1,6 +1,7 @@
 import { translateWithGoogle } from './services/google.js';
 import { translateWithOpenAI } from './services/openai.js';
 import { translateWithBing } from './services/bing.js';
+import { translateWithDeepL } from './services/deepl.js';
 
 // Listen for messages from content script
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
@@ -25,6 +26,8 @@ async function handleTranslation(request) {
       return await translateWithOpenAI(text, sourceLang, targetLang, settings);
     case 'bing':
       return await translateWithBing(text, sourceLang, targetLang);
+    case 'deepl':
+      return await translateWithDeepL(text, sourceLang, targetLang);
     default:
       throw new Error(`Unknown service: ${serviceType}`);
   }

@@ -47,13 +47,14 @@ class TranslationManager {
         targetLang: 'zh-TW',
         autoTranslate: true,
         service: 'google',
-        theme: 'light',
+        theme: null,
         uiLanguage: 'zh-TW',
         ...result
       };
       
-      // Apply theme
-      document.documentElement.setAttribute('data-theme', this.settings.theme || 'light');
+      // Apply theme (If null, detect system)
+      const activeTheme = this.settings.theme || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', activeTheme);
       
       // Apply Language to Tooltip
       if (this.tooltip && this.tooltip.setLanguage) {

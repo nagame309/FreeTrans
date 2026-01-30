@@ -268,6 +268,39 @@ select:focus {
   color: var(--ctp-subtext0);
 }
 
+/* Password Visibility Toggle */
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.input-wrapper input {
+  padding-right: 40px !important; /* Make room for the button */
+}
+
+.password-toggle {
+  position: absolute;
+  right: 8px;
+  background: transparent;
+  border: none;
+  color: var(--ctp-subtext0);
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: all 0.2s;
+  z-index: 10;
+}
+
+.password-toggle:hover {
+  color: var(--ctp-mauve);
+  background: rgba(136, 57, 239, 0.1);
+}
+
 /* Save Bar */
 .save-bar {
   margin-top: 12px; /* Compact */
@@ -339,4 +372,90 @@ button.save-btn:hover {
 .toast.show {
   transform: translateY(0);
   opacity: 1;
+}
+
+/* About & Support Section */
+.about-section {
+  margin-top: 24px;
+  padding-bottom: 40px !important;
+}
+
+.about-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 24px;
+  background: var(--details-bg);
+  padding: 24px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+}
+
+.about-info p {
+  margin: 4px 0;
+  font-size: 14px;
+}
+
+.support-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.support-text {
+  font-size: 13px;
+  color: var(--ctp-subtext0);
+  font-weight: 500;
+}
+
+.donation-btn {
+  display: inline-flex;
+  align-items: center;
+  background-color: var(--ctp-pink);
+  color: #ffffff !important;
+  border: 1px solid rgba(27, 31, 36, 0.15);
+  padding: 5px 16px;
+  border-radius: 6px;
+  text-decoration: none !important;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  box-shadow: rgba(27, 31, 36, 0.04) 0px 1px 0px 0px, rgba(255, 255, 255, 0.25) 0px 1px 0px 0px inset;
+  transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+}
+
+.donation-btn:hover {
+  background-color: #d669b9; /* Slightly darker pink */
+}
+
+.footer-links {
+  margin-top: 24px;
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+}
+
+.footer-links a {
+  color: var(--ctp-subtext0);
+  text-decoration: none;
+  font-size: 12px;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover {
+  color: var(--ctp-mauve);
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .about-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .support-box {
+    align-items: flex-start;
+    width: 100%;
+  }
 }

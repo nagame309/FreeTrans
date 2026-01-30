@@ -28,11 +28,33 @@ window.FreeTrans.Utils.isPureChinese = function(text) {
   return chineseRatio > 0.8 && !hasEnglish;
 };
 
+window.FreeTrans.Utils.LANGUAGES = {
+  'zh-TW': '繁體中文',
+  'zh-CN': '簡體中文',
+  'en': 'English',
+  'ja': '日本語',
+  'ko': '한국어',
+  'fr': 'Français',
+  'de': 'Deutsch',
+  'es': 'Español',
+  'it': 'Italiano',
+  'ru': 'Русский',
+  'pt': 'Português',
+  'nl': 'Nederlands',
+  'pl': 'Polski',
+  'vi': 'Tiếng Việt',
+  'th': 'ไทย',
+  'id': 'Bahasa Indonesia',
+  'tr': 'Türkçe',
+  'ar': 'العربية'
+};
+
 /**
  * Format language tag for display
  */
 window.FreeTrans.Utils.getLanguageTag = function(sourceLang, targetLang) {
   const langNames = {
+    ...window.FreeTrans.Utils.LANGUAGES,
     'en': 'ENGLISH',
     'ja': 'JAPANESE',
     'ko': 'KOREAN',
@@ -42,10 +64,6 @@ window.FreeTrans.Utils.getLanguageTag = function(sourceLang, targetLang) {
     'it': 'ITALIAN',
     'ru': 'RUSSIAN',
     'pt': 'PORTUGUESE',
-    'zh-TW': '繁體中文',
-    'zh-CN': '簡體中文',
-    'zh-Hant': '繁體中文',
-    'zh-Hans': '簡體中文',
     'zh': '中文',
     'auto': 'DETECTING'
   };
